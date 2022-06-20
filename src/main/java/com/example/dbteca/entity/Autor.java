@@ -11,13 +11,10 @@ public class Autor {
     private String nome;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Livro> publicacoes;
-
     public String getNome() {
         return nome;
     }
-
     public Long getId() {
         return id;
     }
-
 }

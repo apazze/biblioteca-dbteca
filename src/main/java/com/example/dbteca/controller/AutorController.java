@@ -15,6 +15,9 @@ public class AutorController {
 
     @PostMapping(path = "/inserir")
     public Autor Adicionar(@RequestBody Autor autor){
+        if(autorRepository.findByNome(autor.getNome()).isPresent()){
+            throw new IllegalArgumentException("Nome ja existe no banco. Tente outro!");
+        }
         return autorRepository.save(autor);
     }
     @GetMapping("/{id}")
