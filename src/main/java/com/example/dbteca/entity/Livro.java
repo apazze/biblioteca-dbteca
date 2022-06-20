@@ -12,14 +12,6 @@ public class Livro {
     @ManyToOne(cascade = CascadeType.ALL)
     private Autor autor;
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
     public Long getId() {
         return id;
     }
@@ -36,7 +28,4 @@ public class Livro {
         return autor;
     }
 
-    public void setAutor(Autor autor) {
-        this.autor = autor;
-    }
 }
