@@ -17,4 +17,8 @@ public class Autor {
     public Long getId() {
         return id;
     }
+
+    public List<Livro> getPublicacoes() {
+        return publicacoes;
+    }
 }
