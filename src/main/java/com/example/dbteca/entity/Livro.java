@@ -10,7 +10,12 @@ public class Livro {
     private String titulo;
     private String isbn;
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "livro_autor", joinColumns = {@JoinColumn(name = "livro_id")}, inverseJoinColumns = {@JoinColumn(name = "autor_id")})
     private Autor autor;
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
 
     public Long getId() {
         return id;
@@ -26,9 +31,5 @@ public class Livro {
 
     public Autor getAutor() {
         return autor;
-    }
-
-    public void setAutor(Autor autor) {
-        this.autor = autor;
     }
 }

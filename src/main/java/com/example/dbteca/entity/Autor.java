@@ -9,8 +9,8 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Livro> publicacoes;
+    @OneToMany(mappedBy = "autor")
+    private List<Livro> livros;
     public String getNome() {
         return nome;
     }
@@ -18,7 +18,4 @@ public class Autor {
         return id;
     }
 
-    public List<Livro> getPublicacoes() {
-        return publicacoes;
-    }
 }
