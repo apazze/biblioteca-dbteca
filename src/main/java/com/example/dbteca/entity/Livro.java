@@ -7,6 +7,13 @@ public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public Livro(String titulo, String isbn, Autor autor) {
+        this.titulo = titulo;
+        this.isbn = isbn;
+        this.autor = autor;
+    }
+
     private String titulo;
     private String isbn;
     @ManyToOne(cascade = CascadeType.ALL)

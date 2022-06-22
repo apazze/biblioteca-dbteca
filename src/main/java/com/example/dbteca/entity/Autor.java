@@ -8,6 +8,14 @@ public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public Autor(String nome) {
+        this.nome = nome;
+    }
+
+    public Autor() {
+    }
+
     private String nome;
     @OneToMany(mappedBy = "autor")
     private List<Livro> livros;

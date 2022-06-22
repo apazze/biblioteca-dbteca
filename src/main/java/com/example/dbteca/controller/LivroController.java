@@ -1,7 +1,9 @@
 package com.example.dbteca.controller;
 
+import com.example.dbteca.dto.LivroDto;
 import com.example.dbteca.entity.Autor;
 import com.example.dbteca.entity.Livro;
+import com.example.dbteca.mapper.LivroMapper;
 import com.example.dbteca.repository.AutorRepository;
 import com.example.dbteca.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +20,10 @@ public class LivroController {
     private AutorRepository autorRepository;
 
     @PostMapping(path = "/inserir")
-    public Livro Adicionar(@RequestBody Livro livro) {
+    public Livro Adicionar(@RequestBody LivroDto livroDto) {
+        Livro livro = LivroMapper.ParaLivro(livroDto);
         Optional<Autor> autor = autorRepository.findByNome(livro.getAutor().getNome());
-        if(autor.isPresent()){
+        if(autor.isPresent()) {
             livro.setAutor(autor.get());
         }
         return livroRepository.save(livro);
