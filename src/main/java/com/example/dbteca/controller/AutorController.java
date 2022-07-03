@@ -17,13 +17,14 @@ public class AutorController {
 
     @PostMapping(path = "/inserir")
     public Autor Adicionar(@RequestBody AutorDto autorDto){
-        if(autorRepository.findByNome(autorDto.getNome()).isPresent()){
-            throw new IllegalArgumentException("Nome ja existe no banco. Tente outro!");
+        Optional<Autor> autor = autorRepository.findByNome(autorDto.getNome());
+        if(autor.isPresent()){
+            throw new IllegalArgumentException("Autor ja existe!!!!!!!!");
         }
         return autorRepository.save(AutorMapper.ParaAutor(autorDto));
     }
-    @GetMapping("/{id}")
-    public Optional<Autor> BuscarPorId(@PathVariable("id") Long id){
+    @GetMapping
+    public Optional<Autor> BuscarPorId(@RequestParam Long id){
         return autorRepository.findById(id);
     }
 }

@@ -1,32 +1,30 @@
 package com.example.dbteca.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String titulo;
+    public Livro() {
+    }
     public Livro(String titulo, String isbn, Autor autor) {
         this.titulo = titulo;
         this.isbn = isbn;
         this.autor = autor;
     }
 
-    private String titulo;
     private String isbn;
+
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "livro_autor", joinColumns = {@JoinColumn(name = "livro_id")}, inverseJoinColumns = {@JoinColumn(name = "autor_id")})
     private Autor autor;
-
-    public void setAutor(Autor autor) {
-        this.autor = autor;
-    }
-
-    public Long getId() {
-        return id;
-    }
 
     public String getTitulo() {
         return titulo;
@@ -38,5 +36,13 @@ public class Livro {
 
     public Autor getAutor() {
         return autor;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
     }
 }

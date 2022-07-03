@@ -22,14 +22,15 @@ public class LivroController {
     @PostMapping(path = "/inserir")
     public Livro Adicionar(@RequestBody LivroDto livroDto) {
         Livro livro = LivroMapper.ParaLivro(livroDto);
-        Optional<Autor> autor = autorRepository.findByNome(livro.getAutor().getNome());
-        if(autor.isPresent()) {
+        Optional<Autor> autor = autorRepository.findByNome(livroDto.getAutorDto().getNome());
+        if(autor.isPresent()){
             livro.setAutor(autor.get());
         }
+
         return livroRepository.save(livro);
     }
     @GetMapping
-    public Livro BuscaPorIsbn(@RequestParam String isbn){
+    public Livro BuscarPorIsbn(@RequestParam String isbn){
         return livroRepository.findByIsbn(isbn);
     }
 }
