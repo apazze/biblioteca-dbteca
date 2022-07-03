@@ -22,7 +22,7 @@ public class LivroService {
     public Livro Adicionar(LivroDto livroDto){
         Livro livro = LivroMapper.ParaLivro(livroDto);
         if(livroRepository.findByIsbn(livro.getIsbn()).isPresent()){
-            throw new IllegalArgumentException("Isbn ja cadastrado!!!");
+            throw new IllegalArgumentException("Isbn ja existe!!!!!!!!");
         }
         Optional<Autor> autor = autorRepository.findByNome(livroDto.getAutorDto().getNome());
         if(autor.isPresent()){

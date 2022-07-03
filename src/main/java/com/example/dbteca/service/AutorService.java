@@ -19,7 +19,7 @@ public class AutorService {
     public Autor Adicionar(AutorDto autorDto){
         Optional<Autor> autor = autorRepository.findByNome(autorDto.getNome());
         if (autor.isPresent()) {
-            throw new IllegalArgumentException("Autor ja existe!!!!!!!!");
+            throw new IllegalArgumentException("Nome do Autor ja existe!!!!!!!!");
         }
         return autorRepository.save(AutorMapper.ParaAutor(autorDto));
     }

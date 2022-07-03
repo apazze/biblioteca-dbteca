@@ -2,7 +2,6 @@ package com.example.dbteca.controller;
 
 import com.example.dbteca.dto.LivroDto;
 import com.example.dbteca.entity.Livro;
-import com.example.dbteca.mapper.LivroMapper;
 import com.example.dbteca.service.LivroService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +19,11 @@ public class LivroController {
     }
 
     @PostMapping(path = "/inserir")
-    public ResponseEntity<Livro> Adicionar(@RequestBody LivroDto livroDto) {
+    public ResponseEntity Adicionar(@RequestBody LivroDto livroDto) {
         try{
             return ResponseEntity.status(HttpStatus.CREATED).body(livroService.Adicionar(livroDto));
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(LivroMapper.ParaLivro(livroDto));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
     @GetMapping

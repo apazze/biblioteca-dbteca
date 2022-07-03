@@ -3,6 +3,8 @@ package com.example.dbteca.controller;
 import com.example.dbteca.dto.AutorDto;
 import com.example.dbteca.entity.Autor;
 import com.example.dbteca.service.AutorService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -18,8 +20,12 @@ public class AutorController {
     }
 
     @PostMapping(path = "/inserir")
-    public Autor Adicionar(@RequestBody AutorDto autorDto) {
-        return autorService.Adicionar(autorDto);
+    public ResponseEntity Adicionar(@RequestBody AutorDto autorDto) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(autorService.Adicionar(autorDto));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @GetMapping
