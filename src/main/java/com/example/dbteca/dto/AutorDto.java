@@ -6,4 +6,8 @@ public class AutorDto {
     public String getNome() {
         return nome;
     }
+
+    public AutorDto(String nome) {
+        this.nome = nome;
+    }
 }

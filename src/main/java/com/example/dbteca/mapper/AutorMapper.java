@@ -7,4 +7,8 @@ public class AutorMapper {
     public static Autor ParaAutor(AutorDto autorDto) {
         return new Autor(autorDto.getNome());
     }
+
+    public static AutorDto ParaAutorDto(Autor autor) {
+        return new AutorDto(autor.getNome());
+    }
 }
